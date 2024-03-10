@@ -1,0 +1,86 @@
+{
+  "name": "uploadertopastebin",
+  "displayName": "UploaderToPastebin",
+  "description": "Uploads your code to pastebin.com",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "uploadertopastebin.uploadcode",
+        "title": "Upload to Pastebin"
+      },
+      {
+        "command": "uploadertopastebin.uploadcode_1h",
+        "title": "Upload to Pastebin for an hour"
+      },
+      {
+        "command": "uploadertopastebin.uploadcode_1d",
+        "title": "Upload to Pastebin for a day"
+      },
+      {
+        "command": "uploadertopastebin.uploadcode_1w",
+        "title": "Upload to Pastebin for a week"
+      }
+    ],
+    
+    "configuration": {
+			"title": "API key",
+			"properties": {
+			"uploadertopastebin.api_key": {
+				"type": "string",
+				"default": "",
+				"description": "Your pastebin API key. You can get it in your personal account"
+			  }  
+		  }
+    },
+    "menus": {
+      "editor/context": [{
+          "command": "uploadertopastebin.uploadcode",
+          "group": "upload@1"
+      }, {
+        "command": "uploadertopastebin.uploadcode_1h",
+        "group": "upload@2"
+      }, {
+        "command": "uploadertopastebin.uploadcode_1w",
+        "group": "upload@3"
+      }, {
+        "command": "uploadertopastebin.uploadcode_1d",
+        "group": "upload@4"
+      }]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2",
+    "ts-loader": "^9.5.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-electron": "^2.3.6"
+  }
+}
